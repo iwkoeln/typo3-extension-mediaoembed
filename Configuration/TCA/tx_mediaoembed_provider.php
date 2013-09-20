@@ -101,6 +101,13 @@ return array(
 				'eval' => 'unique'
 			)
 		),
+
+		// this is required so that we can use the value in the domain model
+		'sorting' => array(
+			'config' => array(
+				'type' => 'input'
+			),
+		),
 	),
 	'types' => array(
 		'0' => array('showitem' => 'hidden;;;;1-1-1, name;;;;2-2-2, is_generic, description, url_schemes, endpoint, use_generic_providers, embedly_shortname'),

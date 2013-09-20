@@ -35,4 +35,8 @@ mod.wizards.newContentElement {
 }
 ');
 
+if(TYPO3_MODE == 'BE') {
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Sto\\Mediaoembed\\Command\\MediaoembedCommandController';
+}
+
 ?>

@@ -1,15 +1,32 @@
 
-plugin.tx_mediaoembed._CSS_DEFAULT_STYLE (
+plugin.tx_mediaoembed {
 
-	div.tx-mediaoembed {
-		margin: 0 auto;
-		margin-bottom: {$styles.content.imgtext.rowSpace}px;
+	persistence {
+
+		classes {
+
+			Sto\Mediaoembed\Domain\Model\Provider {
+				mapping {
+					tableName = tx_mediaoembed_provider
+				}
+			}
+		}
 	}
 
-	div.tx-mediaoembed div.tx-mediaoembed-directlink {
-		text-align: right;
-	}
-)
+	_CSS_DEFAULT_STYLE (
+
+		div.tx-mediaoembed {
+			margin: 0 auto;
+			margin-bottom: {$styles.content.imgtext.rowSpace}px;
+		}
+
+		div.tx-mediaoembed div.tx-mediaoembed-directlink {
+			text-align: right;
+		}
+	)
+}
+
+module.tx_mediaoembed < plugin.tx_mediaoembed
 
 tt_content.mediaoembed_oembedmediarenderer.20.typoscript_settings {
 
