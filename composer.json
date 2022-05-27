@@ -31,7 +31,7 @@
     "replace": {
         "typo3-ter/mediaoembed": "self.version"
     },
-    "version": "dev-master",
+    "version": "3.0.1",
     "config": {
         "vendor-dir": ".Build/vendor",
         "bin-dir": ".Build/bin"
@@ -48,7 +48,7 @@
         },
         "typo3/cms": {
             "web-dir": ".Build/Web",
-            "extension-key": "typo3-extension-mediaoembed"
+            "extension-key": "mediaoembed"
         }
     }
 }
