@@ -7,15 +7,9 @@ use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
 
 class HttpClientFactory
 {
-    /**
-     * @var ObjectManagerInterface
-     */
-    private $objectManager;
+    private ?ObjectManagerInterface $objectManager = null;
 
-    /**
-     * @var array
-     */
-    private $settings;
+    private ?array $settings = null;
 
     public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager)
     {

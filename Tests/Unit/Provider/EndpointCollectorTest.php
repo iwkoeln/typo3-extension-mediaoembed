@@ -11,10 +11,7 @@ use Sto\Mediaoembed\Provider\ProviderUrls;
 
 class EndpointCollectorTest extends TestCase
 {
-    /**
-     * @var EndpointCollector
-     */
-    private $collector;
+    private ?EndpointCollector $collector = null;
 
     private $providerEndpointsProphecy;
 

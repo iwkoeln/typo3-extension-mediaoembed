@@ -23,15 +23,9 @@ use Sto\Mediaoembed\Service\ConfigurationService;
  */
 class Configuration
 {
-    /**
-     * @var ConfigurationService
-     */
-    private $configurationService;
+    private ConfigurationService $configurationService;
 
-    /**
-     * @var ContentRepository
-     */
-    private $contentRepository;
+    private ContentRepository $contentRepository;
 
     public function __construct(ConfigurationService $configurationService, ContentRepository $contentRepository)
     {
@@ -50,7 +44,7 @@ class Configuration
     public function getMaxheight(): int
     {
         $contentMaxHeight = $this->getContent()->getMaxHeight();
-        if (!empty($contentMaxHeight)) {
+        if (empty($contentMaxHeight) === false) {
             return $contentMaxHeight;
         }
 
@@ -68,7 +62,7 @@ class Configuration
     public function getMaxwidth(): int
     {
         $contentMaxWidth = $this->getContent()->getMaxWidth();
-        if (!empty($contentMaxWidth)) {
+        if (empty($contentMaxWidth) === false) {
             return $contentMaxWidth;
         }
 

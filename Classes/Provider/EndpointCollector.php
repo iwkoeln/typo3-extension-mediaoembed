@@ -6,15 +6,9 @@ use RuntimeException;
 
 class EndpointCollector
 {
-    /**
-     * @var ProviderEndpoints
-     */
-    private $providerEndpoints;
+    private ProviderEndpoints $providerEndpoints;
 
-    /**
-     * @var ProviderUrls
-     */
-    private $providerUrls;
+    private ProviderUrls $providerUrls;
 
     public function __construct(
         ProviderEndpoints $providerEndpoints,
@@ -65,7 +59,7 @@ class EndpointCollector
 
         foreach ($this->getProviderData() as $urlScheme => $providerData) {
             $endpointUrl = $providerData[0];
-            if (!array_key_exists($endpointUrl, $endpointLabels)) {
+            if (array_key_exists($endpointUrl, $endpointLabels) === false) {
                 throw new RuntimeException('No label configured for endpoint URL ' . $endpointUrl);
             }
         }

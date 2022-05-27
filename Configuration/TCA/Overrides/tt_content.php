@@ -2,13 +2,10 @@
 
 declare(strict_types=1);
 
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+defined('TYPO3') || die();
 
-defined('TYPO3_MODE') or die();
-
-$lllPrefix = 'LLL:' . 'EXT:mediaoembed/Resources/Private/Language/locallang_db.xlf:';
-$lllPrefixTtc = 'LLL:' . 'EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:';
+$lllPrefix = 'LLL:EXT:mediaoembed/Resources/Private/Language/locallang_db.xlf:';
+$lllPrefixTtc = 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:';
 
 $ttContentColumns = [
     'tx_mediaoembed_url' => [
@@ -60,9 +57,9 @@ $ttContentColumns = [
     ],
 ];
 
-ExtensionManagementUtility::addTCAcolumns('tt_content', $ttContentColumns);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $ttContentColumns);
 
-ExtensionManagementUtility::addTcaSelectItem(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
     'tt_content',
     'CType',
     [
@@ -105,7 +102,7 @@ $GLOBALS['TCA']['tt_content']['types']['mediaoembed_oembedmediarenderer']['showi
 ';
 
 // Use old structure before TCA was streamlined in 8.5.0 (https://forge.typo3.org/issues/78383)
-if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8005000) {
+if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class)->getVersion()) < 8005000) {
     $GLOBALS['TCA']['tt_content']['types']['mediaoembed_oembedmediarenderer']['showitem'] = '
         --palette--;' . $lllPrefixTtc . 'palette.general;general,
         --palette--;' . $lllPrefixTtc . 'palette.header;header,rowDescription,
@@ -116,7 +113,7 @@ if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8005000
         --palette--;' . $lllPrefixTtc . 'palette.visibility;visibility,
         --palette--;' . $lllPrefixTtc . 'palette.access;access,
     --div--;' . $lllPrefixTtc . 'tabs.extended,
-    --div--;LLL:EXT:lang/locallang_tca.xlf:sys_category.tabs.category,
+    --div--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category,
         categories
 ';
 }

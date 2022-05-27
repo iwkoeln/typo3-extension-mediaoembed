@@ -25,20 +25,14 @@ use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
  */
 class ResponseBuilder implements SingletonInterface
 {
-    /**
-     * @var ObjectManagerInterface
-     */
-    private $objectManager;
+    private ObjectManagerInterface $objectManager;
 
-    /**
-     * @var PhotoDownloadService
-     */
-    private $photoDownloadService;
+    private PhotoDownloadService $photoDownloadService;
 
     /**
      * @var string[]
      */
-    private $responseTypes = [
+    private array $responseTypes = [
         'link',
         'photo',
         'rich',

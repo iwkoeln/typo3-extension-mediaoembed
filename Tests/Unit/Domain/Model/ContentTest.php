@@ -7,10 +7,7 @@ use Sto\Mediaoembed\Domain\Model\Content;
 
 class ContentTest extends TestCase
 {
-    /**
-     * @var Content
-     */
-    private $content;
+    private ?Content $content = null;
 
     public function setUp()
     {

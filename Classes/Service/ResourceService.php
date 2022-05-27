@@ -12,10 +12,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ResourceService
 {
-    /**
-     * @var ResourceFactory
-     */
-    private $resourceFactory;
+    private ResourceFactory $resourceFactory;
 
     public function __construct(ResourceFactory $resourceFactory)
     {

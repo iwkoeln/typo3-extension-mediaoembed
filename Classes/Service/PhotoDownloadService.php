@@ -13,20 +13,11 @@ use TYPO3\CMS\Core\Resource\Folder;
 
 class PhotoDownloadService
 {
-    /**
-     * @var ConfigurationService
-     */
-    private $configurationService;
+    private ConfigurationService $configurationService;
 
-    /**
-     * @var HttpService
-     */
-    private $httpService;
+    private HttpService $httpService;
 
-    /**
-     * @var ResourceService
-     */
-    private $resourceService;
+    private ResourceService $resourceService;
 
     public function __construct(
         ConfigurationService $configurationService,
@@ -47,11 +38,11 @@ class PhotoDownloadService
      */
     public function downloadPhoto(string $embedUrl, string $downloadUrl)
     {
-        if (!$downloadUrl) {
+        if ($downloadUrl === '' || $downloadUrl === '0') {
             return null;
         }
 
-        if (!$this->configurationService->isPhotoDownloadEnabled()) {
+        if ($this->configurationService->isPhotoDownloadEnabled() === false) {
             return null;
         }
 
@@ -63,7 +54,7 @@ class PhotoDownloadService
 
         $imageFilename = sha1($embedUrl);
         $extension = $this->detectExtension($downloadUrl);
-        if ($extension) {
+        if ($extension !== '' && $extension !== '0') {
             $imageFilename .= '.' . $extension;
         }
 
@@ -85,11 +76,10 @@ class PhotoDownloadService
      */
     public function getTargetFolder(): Folder
     {
-        $targetFolder = $this->resourceService->getOrCreateFolder(
+        return $this->resourceService->getOrCreateFolder(
             $this->configurationService->getPhotoDownloadStorageUid(),
             $this->configurationService->getPhotoDownloadFolderIdentifier()
         );
-        return $targetFolder;
     }
 
     /**

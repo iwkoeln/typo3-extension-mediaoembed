@@ -4,18 +4,18 @@
 
 /** @noinspection PhpMissingStrictTypesDeclarationInspection */
 
-defined('TYPO3_MODE') or die();
+defined('TYPO3') || die();
 
 $bootMediaoembed = function () {
     $currentVersion = \TYPO3\CMS\Core\Utility\VersionNumberUtility::getNumericTypo3Version();
-    $lllPrefix = 'LLL:' . 'EXT:mediaoembed/Resources/Private/Language/locallang_db.xlf:';
+    $lllPrefix = 'LLL:EXT:mediaoembed/Resources/Private/Language/locallang_db.xlf:';
 
     $registerPluginLegacy = function () {
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Sto.Mediaoembed',
+            'Mediaoembed',
             'OembedMediaRenderer',
             /** @uses \Sto\Mediaoembed\Controller\OembedController::renderMediaAction() */
-            ['Oembed' => 'renderMedia'],
+            [\Sto\Mediaoembed\Controller\OembedController::class => 'renderMedia'],
             [],
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );

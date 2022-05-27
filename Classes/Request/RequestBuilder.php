@@ -11,7 +11,7 @@ namespace Sto\Mediaoembed\Request;
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
-
+use Sto\Mediaoembed\Content\Configuration;
 use Sto\Mediaoembed\Domain\Model\Provider;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -23,7 +23,7 @@ class RequestBuilder
     /**
      * TypoScript / Flexform configuration
      *
-     * @var \Sto\Mediaoembed\Content\Configuration
+     * @var Configuration
      */
     protected $configuration;
 

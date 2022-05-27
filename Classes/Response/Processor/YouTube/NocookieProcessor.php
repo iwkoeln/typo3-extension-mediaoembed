@@ -14,7 +14,7 @@ class NocookieProcessor implements ResponseProcessorInterface
 
     public function processResponse(GenericResponse $response)
     {
-        if (!$response instanceof VideoResponse) {
+        if ($response instanceof VideoResponse === false) {
             throw new InvalidArgumentException('This processor only works with video responses!');
         }
 

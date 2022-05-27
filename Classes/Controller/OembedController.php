@@ -13,7 +13,7 @@ namespace Sto\Mediaoembed\Controller;
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
-
+use Psr\Http\Message\ResponseInterface;
 use Sto\Mediaoembed\Content\Configuration;
 use Sto\Mediaoembed\Domain\Model\Provider;
 use Sto\Mediaoembed\Domain\Repository\ProviderRepository;
@@ -35,20 +35,11 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  */
 class OembedController extends ActionController
 {
-    /**
-     * @var Configuration
-     */
-    private $configuration;
+    private ?Configuration $configuration = null;
 
-    /**
-     * @var ProviderRepository
-     */
-    private $providerRepository;
+    private ?ProviderRepository $providerRepository = null;
 
-    /**
-     * @var ResponseBuilder
-     */
-    private $responseBuilder;
+    private ?ResponseBuilder $responseBuilder = null;
 
     public function injectConfiguration(Configuration $configuration)
     {
@@ -70,7 +61,7 @@ class OembedController extends ActionController
      *
      * @return string
      */
-    public function renderMediaAction()
+    public function renderMediaAction(): ResponseInterface
     {
         try {
             $this->getEmbedDataFromProvider();
@@ -83,7 +74,7 @@ class OembedController extends ActionController
             $result = $this->renderErrorMessage('error_message_unknown', [$exception->getMessage()]);
         }
 
-        return $result;
+        return $this->htmlResponse($result);
     }
 
     /**
@@ -109,11 +100,11 @@ class OembedController extends ActionController
             $isValid = false;
         }
 
-        if ($isValid && !GeneralUtility::isValidUrl($url)) {
+        if ($isValid && GeneralUtility::isValidUrl($url) === false) {
             $isValid = false;
         }
 
-        if (!$isValid) {
+        if ($isValid === false) {
             throw new InvalidUrlException($url);
         }
     }

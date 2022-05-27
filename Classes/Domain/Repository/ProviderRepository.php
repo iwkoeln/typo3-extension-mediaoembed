@@ -25,10 +25,7 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  */
 class ProviderRepository implements SingletonInterface
 {
-    /**
-     * @var array
-     */
-    private $providersConfig;
+    private array $providersConfig;
 
     public function __construct(ConfigurationManagerInterface $configurationManager)
     {
@@ -66,7 +63,7 @@ class ProviderRepository implements SingletonInterface
         $urlSchemes = (array)($providerConfig['urlSchemes'] ?? []);
         $this->validateUrlSchemes($urlRegexes, $urlSchemes, $providerName);
 
-        $hasRegexUrlSchemes = count($urlRegexes) > 0;
+        $hasRegexUrlSchemes = $urlRegexes !== [];
 
         $provider = new Provider(
             $providerName,
@@ -86,7 +83,7 @@ class ProviderRepository implements SingletonInterface
             throw new InvalidConfigurationException(sprintf('Endpoint of provider %s is empty.', $providerName));
         }
 
-        if (!GeneralUtility::isValidUrl($endpoint)) {
+        if (GeneralUtility::isValidUrl($endpoint) === false) {
             throw new InvalidConfigurationException(
                 sprintf('Endpoint of provider %s is an invalid URL: %s', $providerName, $endpoint)
             );

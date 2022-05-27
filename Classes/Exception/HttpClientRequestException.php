@@ -7,10 +7,7 @@ use Throwable;
 
 class HttpClientRequestException extends RuntimeException
 {
-    /**
-     * @var string
-     */
-    private $errorDetails;
+    private string $errorDetails;
 
     public function __construct(string $message, int $httpCode, Throwable $previous = null, string $errorDetails = '')
     {

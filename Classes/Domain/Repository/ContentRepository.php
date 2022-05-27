@@ -23,10 +23,7 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  */
 class ContentRepository implements SingletonInterface
 {
-    /**
-     * @var ConfigurationManagerInterface
-     */
-    private $configurationManager;
+    private ConfigurationManagerInterface $configurationManager;
 
     public function __construct(ConfigurationManagerInterface $configurationManager)
     {

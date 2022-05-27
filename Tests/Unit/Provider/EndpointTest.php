@@ -7,10 +7,7 @@ use Sto\Mediaoembed\Provider\Endpoint;
 
 class EndpointTest extends TestCase
 {
-    /**
-     * @var Endpoint
-     */
-    private $endpoint;
+    private ?Endpoint $endpoint = null;
 
     public function setUp()
     {

@@ -9,10 +9,7 @@ use Sto\Mediaoembed\Tests\Functional\AbstractFunctionalTest;
 
 class FlexFormUpdateHandlerTest extends AbstractFunctionalTest
 {
-    /**
-     * @var UpdateRepository
-     */
-    private $updateRepository;
+    private ?UpdateRepository $updateRepository = null;
 
     public function setUp()
     {

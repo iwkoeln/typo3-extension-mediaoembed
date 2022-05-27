@@ -19,30 +19,15 @@ namespace Sto\Mediaoembed\Domain\Model;
  */
 class Content
 {
-    /**
-     * @var int
-     */
-    private $maxHeight;
+    private int $maxHeight;
 
-    /**
-     * @var int
-     */
-    private $maxWidth;
+    private int $maxWidth;
 
-    /**
-     * @var bool
-     */
-    private $playRelated;
+    private bool $playRelated;
 
-    /**
-     * @var int
-     */
-    private $uid;
+    private int $uid;
 
-    /**
-     * @var string
-     */
-    private $url;
+    private string $url;
 
     public function __construct(int $uid, string $url, int $maxHeight, int $maxWidth, bool $playRelated)
     {

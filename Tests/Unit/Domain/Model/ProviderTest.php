@@ -7,10 +7,7 @@ use Sto\Mediaoembed\Domain\Model\Provider;
 
 class ProviderTest extends TestCase
 {
-    /**
-     * @var Provider
-     */
-    private $provider;
+    private ?Provider $provider = null;
 
     protected function setUp()
     {

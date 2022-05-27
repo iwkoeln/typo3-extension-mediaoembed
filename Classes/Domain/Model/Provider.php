@@ -34,15 +34,9 @@ class Provider
      */
     protected $urlSchemes;
 
-    /**
-     * @var bool
-     */
-    private $hasRegexUrlSchemes;
+    private bool $hasRegexUrlSchemes;
 
-    /**
-     * @var array
-     */
-    private $processors = [];
+    private array $processors = [];
 
     public function __construct(string $name, string $endpoint, array $urlSchemes, bool $hasRegexUrlSchemes)
     {

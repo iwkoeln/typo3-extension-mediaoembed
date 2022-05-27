@@ -15,12 +15,9 @@ class ProviderResolverTest extends AbstractUnitTest
     /**
      * @var array|Provider[]
      */
-    private $dummyProviders;
+    private ?array $dummyProviders = null;
 
-    /**
-     * @var ProviderResolver
-     */
-    private $providerResolver;
+    private ?ProviderResolver $providerResolver = null;
 
     protected function setUp()
     {
@@ -60,7 +57,7 @@ class ProviderResolverTest extends AbstractUnitTest
 
     /**
      * @param string $urlScheme
-     * @return \Prophecy\Prophecy\ObjectProphecy|\Sto\Mediaoembed\Domain\Model\Provider
+     * @return \Prophecy\Prophecy\ObjectProphecy|Provider
      */
     private function getProviderProphecy(string $urlScheme): ObjectProphecy
     {

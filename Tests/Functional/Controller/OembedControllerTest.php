@@ -25,8 +25,7 @@ class OembedControllerTest extends AbstractFunctionalTest
 
     public function testYouTubeDirectLinkIsRendered()
     {
-        $expectedDirectLink = '<a rel="noreferrer noopener" target="_blank"'
-            . ' href="https://www.youtube.com/watch?v=iwGFalTRHDA">';
+        $expectedDirectLink = '<a rel="noreferrer noopener" target="_blank" href="https://www.youtube.com/watch?v=iwGFalTRHDA">';
 
         $this->assertContains($expectedDirectLink, $this->renderOembedContent());
     }

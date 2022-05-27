@@ -294,7 +294,7 @@ class GenericResponse
      */
     protected function getValueFromResponseData($key)
     {
-        if (!array_key_exists($key, $this->responseDataArray)) {
+        if (array_key_exists($key, $this->responseDataArray) === false) {
             return null;
         }
 

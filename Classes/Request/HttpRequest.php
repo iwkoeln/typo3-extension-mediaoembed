@@ -32,18 +32,14 @@ class HttpRequest
 {
     /**
      * The configuration
-     *
-     * @var Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
 
     /**
      * The endpoint URL that should be contacted to get the embed
      * information.
-     *
-     * @var string
      */
-    private $endpoint;
+    private string $endpoint;
 
     /**
      * The required response format. When not specified, the provider can return
@@ -53,17 +49,12 @@ class HttpRequest
      * This value is optional.
      *
      * Important! At the moment, we only handle JSON formatted Responses.
-     *
-     * @var string
      */
-    private $format = 'json';
+    private string $format = 'json';
 
-    /**
-     * @var HttpClientFactory
-     */
-    private $httpClientFactory;
+    private ?HttpClientFactory $httpClientFactory = null;
 
-    private $httpErrorHandlers = [
+    private array $httpErrorHandlers = [
         401,
         404,
         501,
@@ -95,7 +86,7 @@ class HttpRequest
 
     protected function addRequestParameterFormat(array &$parameters)
     {
-        if (isset($this->format)) {
+        if ($this->format !== null) {
             $parameters['format'] = $this->format;
         }
     }
@@ -119,7 +110,7 @@ class HttpRequest
     protected function buildQueryStringParameters(string $endpointQueryParameters, array $parameters): array
     {
         $baseUrlParameters = [];
-        if ($endpointQueryParameters) {
+        if ($endpointQueryParameters !== '' && $endpointQueryParameters !== '0') {
             parse_str($endpointQueryParameters, $baseUrlParameters);
         }
 
@@ -169,7 +160,7 @@ class HttpRequest
         $endpointQueryParameters = $urlParts[1] ?? '';
 
         $finalParameters = $this->buildQueryStringParameters($endpointQueryParameters, $parameters);
-        if (count($finalParameters) === 0) {
+        if ($finalParameters === []) {
             return $endpointBaseUrl;
         }
 
@@ -218,7 +209,7 @@ class HttpRequest
     protected function handleRequestError(HttpClientRequestException $requestException, string $requestUrl)
     {
         $errorCode = $requestException->getCode();
-        if (!in_array($errorCode, $this->httpErrorHandlers, true)) {
+        if (in_array($errorCode, $this->httpErrorHandlers, true) === false) {
             $this->handleErrorUnknown($requestException);
         }
 
@@ -238,8 +229,7 @@ class HttpRequest
     protected function replaceFormatPlaceholders(string $requestUrl)
     {
         $requestUrl = str_replace('###FORMAT###', $this->format, $requestUrl);
-        $requestUrl = str_replace('{format}', $this->format, $requestUrl);
-        return $requestUrl;
+        return str_replace('{format}', $this->format, $requestUrl);
     }
 
     /**

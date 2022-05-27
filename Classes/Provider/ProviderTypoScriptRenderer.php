@@ -31,8 +31,6 @@ class ProviderTypoScriptRenderer
             $result .= '    }' . PHP_EOL . PHP_EOL;
         }
 
-        $result .= '}' . PHP_EOL;
-
-        return $result;
+        return $result . ('}' . PHP_EOL);
     }
 }

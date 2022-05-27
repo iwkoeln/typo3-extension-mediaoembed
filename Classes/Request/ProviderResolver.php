@@ -73,7 +73,7 @@ class ProviderResolver
         foreach ($provider->getUrlSchemes() as $urlScheme) {
             $urlRegex = $urlScheme;
 
-            if (!$provider->hasRegexUrlSchemes()) {
+            if ($provider->hasRegexUrlSchemes() === false) {
                 $urlRegex = $this->convertUrlSchemeToRegex($urlScheme);
             }
 

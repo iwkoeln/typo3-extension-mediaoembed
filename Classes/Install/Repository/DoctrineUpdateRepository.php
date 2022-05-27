@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sto\Mediaoembed\Install\Repository;
 
+use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\DBALException;
 use PDO;
 use TYPO3\CMS\Core\Database\Connection;
@@ -38,7 +39,7 @@ class DoctrineUpdateRepository extends AbstractUpdateRepository implements Updat
 
     public function fetchResultRow($result)
     {
-        if (!$result instanceof \Doctrine\DBAL\Driver\Statement) {
+        if ($result instanceof Statement === false) {
             throw new \InvalidArgumentException('This method only supports doctrine results.');
         }
 

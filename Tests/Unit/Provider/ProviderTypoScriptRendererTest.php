@@ -8,10 +8,7 @@ use Sto\Mediaoembed\Provider\ProviderTypoScriptRenderer;
 
 class ProviderTypoScriptRendererTest extends TestCase
 {
-    /**
-     * @var ProviderTypoScriptRenderer
-     */
-    private $renderer;
+    private ?ProviderTypoScriptRenderer $renderer = null;
 
     public function setUp()
     {

@@ -14,10 +14,7 @@ class PlayRelatedProcessor implements ResponseProcessorInterface
 {
     use IframeAwareProcessorTrait;
 
-    /**
-     * @var Configuration
-     */
-    private $configuration;
+    private ?Configuration $configuration = null;
 
     public function injectConfiguration(Configuration $configuration)
     {
@@ -26,7 +23,7 @@ class PlayRelatedProcessor implements ResponseProcessorInterface
 
     public function processResponse(GenericResponse $response)
     {
-        if (!$response instanceof VideoResponse) {
+        if ($response instanceof VideoResponse === false) {
             throw new InvalidArgumentException('This processor only works with video responses!');
         }
 
@@ -44,9 +41,7 @@ class PlayRelatedProcessor implements ResponseProcessorInterface
             $queryParams = $query !== '' ? GeneralUtility::explodeUrl2Array($query) : [];
             $queryParams['rel'] = $this->configuration->shouldPlayRelated() ? '1' : '0';
 
-            $newUrl .= '?' . ltrim(GeneralUtility::implodeArrayForUrl('', $queryParams), '&');
-
-            return $newUrl;
+            return $newUrl . ('?' . ltrim(GeneralUtility::implodeArrayForUrl('', $queryParams), '&'));
         };
 
         $this->modifyIframeUrl($response, $replaceYoutubeUrl);

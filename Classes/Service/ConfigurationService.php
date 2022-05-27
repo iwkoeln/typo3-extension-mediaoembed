@@ -8,10 +8,7 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 class ConfigurationService
 {
-    /**
-     * @var array
-     */
-    private $settings = [];
+    private array $settings = [];
 
     public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager)
     {
@@ -23,7 +20,7 @@ class ConfigurationService
 
     public function getMaxHeight()
     {
-        if (!empty($this->settings['media']['maxheight'])) {
+        if (empty($this->settings['media']['maxheight']) === false) {
             return (int)$this->settings['media']['maxheight'];
         }
 
@@ -32,7 +29,7 @@ class ConfigurationService
 
     public function getMaxWidth(): int
     {
-        if (!empty($this->settings['media']['maxwidth'])) {
+        if (empty($this->settings['media']['maxwidth']) === false) {
             return (int)$this->settings['media']['maxwidth'];
         }
 

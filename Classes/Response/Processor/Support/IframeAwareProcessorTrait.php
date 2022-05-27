@@ -15,7 +15,7 @@ trait IframeAwareProcessorTrait
         $htmlWrapping = '<html><body><div id="oembed-response">%s</div></body></html>';
         $document = new DOMDocument();
         $loadSuccess = $document->loadHTML(sprintf($htmlWrapping, $response->getHtml()));
-        if (!$loadSuccess) {
+        if ($loadSuccess === false) {
             throw new ProcessorException('Error parsing HTML from YouTube response.');
         }
 
@@ -27,7 +27,7 @@ trait IframeAwareProcessorTrait
 
         $iframeSrc = $iframe->getAttribute('src');
         $urlParts = parse_url($iframeSrc);
-        if (!$urlParts) {
+        if ($urlParts === [] || $urlParts === false) {
             throw new ProcessorException('Could not parse URL of IFrame: ' . $iframeSrc);
         }
 

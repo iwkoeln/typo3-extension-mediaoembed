@@ -9,15 +9,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class FlexFormUpdateHandler
 {
-    /**
-     * @var int
-     */
-    private $oldRecordCount;
+    private int $oldRecordCount;
 
-    /**
-     * @var UpdateRepository
-     */
-    private $updateRepository;
+    private UpdateRepository $updateRepository;
 
     public function __construct(UpdateRepository $updateRepository)
     {
@@ -71,7 +65,7 @@ class FlexFormUpdateHandler
         while ($row = $this->updateRepository->fetchResultRow($result)) {
             $flexFormData = GeneralUtility::xml2array($row['pi_flexform']);
 
-            if (!is_array($flexFormData)) {
+            if (is_array($flexFormData) === false) {
                 $customMessages .= sprintf(
                     'Skipping content element with uid %d because of XML parsing error: %s' . "\n",
                     $row['uid'],
@@ -82,7 +76,7 @@ class FlexFormUpdateHandler
             }
 
             if (
-                !isset($flexFormData['data']['sVideo']['lDEF']['mmFile']['vDEF'])
+                isset($flexFormData['data']['sVideo']['lDEF']['mmFile']['vDEF']) === false
                 || empty($flexFormData['data']['sVideo']['lDEF']['mmFile']['vDEF'])
             ) {
                 $customMessages .= sprintf(
@@ -123,12 +117,12 @@ class FlexFormUpdateHandler
         $customMessages .= 'Tried to update ' . $updateCounter . ' records.' . PHP_EOL;
         $customMessages .= 'Updated ' . $updateCounterSuccess . ' records successfully.' . PHP_EOL;
 
-        return !$hasError;
+        return $hasError === false;
     }
 
     protected function getIntValueFromFlexForm(array $flexFormData, string $field): int
     {
-        if (!isset($flexFormData[$field]['vDEF'])) {
+        if (isset($flexFormData[$field]['vDEF']) === false) {
             return 0;
         }
 
