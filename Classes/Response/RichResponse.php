@@ -55,9 +55,9 @@ class RichResponse extends GenericResponse
      */
     public function initializeTypeSpecificResponseData()
     {
-        $this->html = $this->responseDataArray['html'];
-        $this->width = $this->responseDataArray['width'];
-        $this->height = $this->responseDataArray['height'];
+        $this->html = $this->responseDataArray['html'] ?? '';
+        $this->width = $this->responseDataArray['width'] ?? '';
+        $this->height = $this->responseDataArray['height'] ?? '';
     }
 
     /**
