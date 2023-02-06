@@ -25,10 +25,6 @@ use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
  */
 class ResponseBuilder implements SingletonInterface
 {
-    private ObjectManagerInterface $objectManager;
-
-    private PhotoDownloadService $photoDownloadService;
-
     /**
      * @var string[]
      */
@@ -39,10 +35,8 @@ class ResponseBuilder implements SingletonInterface
         'video',
     ];
 
-    public function __construct(ObjectManagerInterface $objectManager, PhotoDownloadService $photoDownloadService)
+    public function __construct(private readonly ObjectManagerInterface $objectManager, private readonly PhotoDownloadService $photoDownloadService)
     {
-        $this->objectManager = $objectManager;
-        $this->photoDownloadService = $photoDownloadService;
     }
 
     /**
@@ -56,7 +50,7 @@ class ResponseBuilder implements SingletonInterface
      */
     public function buildResponse(string $embedUrl, string $responseData): GenericResponse
     {
-        $parsedResponseData = json_decode($responseData, true);
+        $parsedResponseData = json_decode($responseData, true, 512, JSON_THROW_ON_ERROR);
 
         if ($parsedResponseData === null) {
             throw new InvalidResponseException($responseData);
@@ -70,9 +64,6 @@ class ResponseBuilder implements SingletonInterface
     /**
      * Creates an instance of a non abstract response for the
      * given response type.
-     *
-     * @param array $parsedResponseData
-     * @return GenericResponse
      */
     protected function createResponseByType(array $parsedResponseData): GenericResponse
     {

@@ -13,8 +13,6 @@ class FlexFormUpdateHandlerTest extends AbstractFunctionalTest
 
     public function setUp()
     {
-        parent::setUp();
-
         $this->updateRepository = UpdateRepositoryFactory::getUpdateRepository();
     }
 

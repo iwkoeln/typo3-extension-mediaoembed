@@ -12,11 +12,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ResourceService
 {
-    private ResourceFactory $resourceFactory;
-
-    public function __construct(ResourceFactory $resourceFactory)
+    public function __construct(private readonly ResourceFactory $resourceFactory)
     {
-        $this->resourceFactory = $resourceFactory;
     }
 
     public function addFile(Folder $folder, string $fileName, string $fileContents): File

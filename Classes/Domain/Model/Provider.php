@@ -34,16 +34,13 @@ class Provider
      */
     protected $urlSchemes;
 
-    private bool $hasRegexUrlSchemes;
-
     private array $processors = [];
 
-    public function __construct(string $name, string $endpoint, array $urlSchemes, bool $hasRegexUrlSchemes)
+    public function __construct(string $name, string $endpoint, array $urlSchemes, private readonly bool $hasRegexUrlSchemes)
     {
         $this->name = $name;
         $this->endpoint = $endpoint;
         $this->urlSchemes = $urlSchemes;
-        $this->hasRegexUrlSchemes = $hasRegexUrlSchemes;
     }
 
     public function getEndpoint(): string

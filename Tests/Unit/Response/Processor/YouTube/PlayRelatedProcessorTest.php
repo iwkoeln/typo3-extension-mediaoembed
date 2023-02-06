@@ -10,7 +10,6 @@ use Sto\Mediaoembed\Tests\Unit\AbstractUnitTest;
 class PlayRelatedProcessorTest extends AbstractUnitTest
 {
     /**
-     * @param bool $shouldPlayRelated
      *
      * @test
      * @dataProvider processResponseModifesIframeUrlDataProvider

@@ -28,6 +28,6 @@ class InvalidResponseException extends RequestException
     {
         $message = 'The server returned an invalid response that could not be parsed. The servers response was: %s';
         $message = sprintf($message, htmlspecialchars($response));
-        parent::__construct($message, 1303402784);
+        parent::__construct($message, 1_303_402_784);
     }
 }

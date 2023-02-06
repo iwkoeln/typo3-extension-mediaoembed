@@ -8,8 +8,6 @@ class OembedControllerTest extends AbstractFunctionalTest
 {
     protected function setUp()
     {
-        parent::setUp();
-
         $this->importDataSet('ntf://Database/pages.xml');
         $this->importDataSet(__DIR__ . '/../Fixtures/ContentElements.xml');
         $this->setUpFrontendRootPage(

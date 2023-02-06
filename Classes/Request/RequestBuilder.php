@@ -32,7 +32,6 @@ class RequestBuilder
      * given provider data.
      *
      * @param Provider $provider
-     * @return HttpRequest
      */
     public function buildNextRequest($provider): HttpRequest
     {

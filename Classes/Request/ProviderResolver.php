@@ -43,7 +43,6 @@ class ProviderResolver
      * Returns the next active provider whos url scheme matches the URL in
      * the current configuration
      *
-     * @param string $url
      * @return Provider The next matching provider
      * @throws NoMatchingProviderException
      */

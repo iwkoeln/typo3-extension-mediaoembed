@@ -21,8 +21,8 @@ class GenericResponseTest extends TestCase
 
     public function testGetCacheAge()
     {
-        $response = $this->createResponse(['cache_age' => 4564765]);
-        $this->assertEquals(4564765, $response->getCacheAge());
+        $response = $this->createResponse(['cache_age' => 4_564_765]);
+        $this->assertEquals(4_564_765, $response->getCacheAge());
     }
 
     public function testGetProviderName()

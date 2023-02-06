@@ -56,8 +56,7 @@ class ProviderResolverTest extends AbstractUnitTest
     }
 
     /**
-     * @param string $urlScheme
-     * @return \Prophecy\Prophecy\ObjectProphecy|Provider
+     * @return ObjectProphecy|Provider
      */
     private function getProviderProphecy(string $urlScheme): ObjectProphecy
     {

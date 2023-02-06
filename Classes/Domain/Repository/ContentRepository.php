@@ -23,11 +23,8 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  */
 class ContentRepository implements SingletonInterface
 {
-    private ConfigurationManagerInterface $configurationManager;
-
-    public function __construct(ConfigurationManagerInterface $configurationManager)
+    public function __construct(private readonly ConfigurationManagerInterface $configurationManager)
     {
-        $this->configurationManager = $configurationManager;
     }
 
     public function getCurrentContent(): Content
@@ -35,13 +32,15 @@ class ContentRepository implements SingletonInterface
         // We must rebuild the content object because it might have changed when the plugin
         // is added multiple sites on one page.
         $contentObjectData = $this->configurationManager->getContentObject()->data;
-
+        if(!array_key_exists('uid', $contentObjectData)) {
+            $contentObjectData['uid'] = 0;
+        }
         return new Content(
-            (int)$contentObjectData['uid'],
-            (string)$contentObjectData['tx_mediaoembed_url'],
-            (int)$contentObjectData['tx_mediaoembed_maxheight'],
-            (int)$contentObjectData['tx_mediaoembed_maxwidth'],
-            (bool)$contentObjectData['tx_mediaoembed_play_related']
+            (int) $contentObjectData['uid'] ?? 0,
+            (string)$contentObjectData['tx_mediaoembed_url'] ?? '',
+            (int)$contentObjectData['tx_mediaoembed_maxheight'] ?? 0,
+            (int)$contentObjectData['tx_mediaoembed_maxwidth'] ?? 0,
+            (bool)$contentObjectData['tx_mediaoembed_play_related'] ?? false
         );
     }
 }

@@ -25,7 +25,7 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  */
 class ProviderRepository implements SingletonInterface
 {
-    private array $providersConfig;
+    private readonly array $providersConfig;
 
     public function __construct(ConfigurationManagerInterface $configurationManager)
     {
@@ -55,7 +55,6 @@ class ProviderRepository implements SingletonInterface
     private function createProvider(string $providerName, array $providerConfig): Provider
     {
         $this->validateProviderName($providerName);
-
         $endpoint = trim((string)($providerConfig['endpoint'] ?? ''));
         $this->validateEndpoint($endpoint, $providerName);
 

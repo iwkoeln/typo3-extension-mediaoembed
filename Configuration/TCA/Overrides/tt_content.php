@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Information\Typo3Version;
+
 defined('TYPO3') || die();
 
 $lllPrefix = 'LLL:EXT:mediaoembed/Resources/Private/Language/locallang_db.xlf:';
@@ -57,9 +62,9 @@ $ttContentColumns = [
     ],
 ];
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $ttContentColumns);
+ExtensionManagementUtility::addTCAcolumns('tt_content', $ttContentColumns);
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+ExtensionManagementUtility::addTcaSelectItem(
     'tt_content',
     'CType',
     [
@@ -100,20 +105,3 @@ $GLOBALS['TCA']['tt_content']['types']['mediaoembed_oembedmediarenderer']['showi
         rowDescription,
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended
 ';
-
-// Use old structure before TCA was streamlined in 8.5.0 (https://forge.typo3.org/issues/78383)
-if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class)->getVersion()) < 8005000) {
-    $GLOBALS['TCA']['tt_content']['types']['mediaoembed_oembedmediarenderer']['showitem'] = '
-        --palette--;' . $lllPrefixTtc . 'palette.general;general,
-        --palette--;' . $lllPrefixTtc . 'palette.header;header,rowDescription,
-        --palette--;' . $lllPrefix . 'palette.tx_mediaoembed_settings;tx_mediaoembed_settings,
-    --div--;' . $lllPrefixTtc . 'tabs.appearance,
-        --palette--;' . $lllPrefixTtc . 'palette.frames;frames,
-    --div--;' . $lllPrefixTtc . 'tabs.access,
-        --palette--;' . $lllPrefixTtc . 'palette.visibility;visibility,
-        --palette--;' . $lllPrefixTtc . 'palette.access;access,
-    --div--;' . $lllPrefixTtc . 'tabs.extended,
-    --div--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category,
-        categories
-';
-}

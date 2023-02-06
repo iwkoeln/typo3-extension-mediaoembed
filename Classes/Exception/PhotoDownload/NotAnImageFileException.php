@@ -15,6 +15,6 @@ class NotAnImageFileException extends OEmbedException
             $url,
             $mimeTpye
         );
-        parent::__construct($message, 1564780686);
+        parent::__construct($message, 1_564_780_686);
     }
 }

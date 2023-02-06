@@ -2,6 +2,7 @@
 
 namespace Sto\Mediaoembed\Tests\Unit\Content;
 
+use Prophecy\Prophecy\ObjectProphecy;
 use PHPUnit\Framework\TestCase;
 use Sto\Mediaoembed\Content\Configuration;
 use Sto\Mediaoembed\Domain\Model\Content;
@@ -10,11 +11,11 @@ use Sto\Mediaoembed\Service\ConfigurationService;
 
 class ConfigurationTest extends TestCase
 {
-    private $configurationServiceProphecy;
+    private ObjectProphecy $configurationServiceProphecy;
 
-    private $contentProphecy;
+    private ObjectProphecy $contentProphecy;
 
-    private $contentRepositoryProphecy;
+    private ObjectProphecy $contentRepositoryProphecy;
 
     public function setUp()
     {
@@ -52,9 +53,6 @@ class ConfigurationTest extends TestCase
     }
 
     /**
-     * @param int $contentValue
-     * @param int $settingsValue
-     * @param int $expectedValue
      * @dataProvider getMaxWidthHeightDataProvider
      */
     public function testGetMaxheight(int $contentValue, int $settingsValue, int $expectedValue)
@@ -66,9 +64,6 @@ class ConfigurationTest extends TestCase
     }
 
     /**
-     * @param int $contentValue
-     * @param int $settingsValue
-     * @param int $expectedValue
      * @dataProvider getMaxWidthHeightDataProvider
      */
     public function testGetMaxwidth(int $contentValue, int $settingsValue, int $expectedValue)

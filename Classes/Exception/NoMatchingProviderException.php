@@ -28,6 +28,6 @@ class NoMatchingProviderException extends OEmbedException
     {
         $message = 'No provider was found for the given URL: %s.';
         $message = sprintf($message, $url);
-        parent::__construct($message, 1303248669);
+        parent::__construct($message, 1_303_248_669);
     }
 }

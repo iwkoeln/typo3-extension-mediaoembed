@@ -9,8 +9,6 @@ use function RectorPrefix20220527\React\Promise\reduce;
 class GetUrlHttpClient implements HttpClientInterface
 {
     /**
-     * @param string $requestUrl
-     * @return string
      * @throws HttpClientRequestException
      */
     public function executeGetRequest(string $requestUrl): string

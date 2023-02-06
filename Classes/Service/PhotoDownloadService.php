@@ -13,20 +13,8 @@ use TYPO3\CMS\Core\Resource\Folder;
 
 class PhotoDownloadService
 {
-    private ConfigurationService $configurationService;
-
-    private HttpService $httpService;
-
-    private ResourceService $resourceService;
-
-    public function __construct(
-        ConfigurationService $configurationService,
-        HttpService $httpService,
-        ResourceService $resourceService
-    ) {
-        $this->configurationService = $configurationService;
-        $this->httpService = $httpService;
-        $this->resourceService = $resourceService;
+    public function __construct(private readonly ConfigurationService $configurationService, private readonly HttpService $httpService, private readonly ResourceService $resourceService)
+    {
     }
 
     /**
@@ -71,9 +59,6 @@ class PhotoDownloadService
         return $file;
     }
 
-    /**
-     * @return Folder
-     */
     public function getTargetFolder(): Folder
     {
         return $this->resourceService->getOrCreateFolder(
@@ -83,8 +68,6 @@ class PhotoDownloadService
     }
 
     /**
-     * @param string $downloadUrl
-     * @param File $file
      * @throws NotAnImageFileException
      */
     public function validateMimeType(string $downloadUrl, File $file)

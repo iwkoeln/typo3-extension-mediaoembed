@@ -30,7 +30,7 @@ class InvalidUrlException extends OEmbedException
     {
         $message = 'The media URL %s is not a valid URL. Please make sure the URL is a valid http:// or https:// URL.';
         $message = sprintf($message, $url);
-        parent::__construct($message, 1303248111);
+        parent::__construct($message, 1_303_248_111);
 
         $this->url = $url;
     }

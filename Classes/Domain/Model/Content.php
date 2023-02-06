@@ -19,23 +19,8 @@ namespace Sto\Mediaoembed\Domain\Model;
  */
 class Content
 {
-    private int $maxHeight;
-
-    private int $maxWidth;
-
-    private bool $playRelated;
-
-    private int $uid;
-
-    private string $url;
-
-    public function __construct(int $uid, string $url, int $maxHeight, int $maxWidth, bool $playRelated)
+    public function __construct(private readonly int $uid, private readonly string $url, private readonly int $maxHeight, private readonly int $maxWidth, private readonly bool $playRelated)
     {
-        $this->maxHeight = $maxHeight;
-        $this->maxWidth = $maxWidth;
-        $this->uid = $uid;
-        $this->url = $url;
-        $this->playRelated = $playRelated;
     }
 
     public function getMaxHeight(): int

@@ -38,6 +38,6 @@ class HttpNotImplementedException extends RequestException
         $message .= 'Please make sure that the data you trying to contact supports the current request format: %s. ';
         $message .= 'The full request to the server was: %s';
         $message = sprintf($message, $mediaUrl, $requestFormat, $requestUrl);
-        parent::__construct($message, 1303402211);
+        parent::__construct($message, 1_303_402_211);
     }
 }

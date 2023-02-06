@@ -7,13 +7,9 @@ use Throwable;
 
 class HttpClientRequestException extends RuntimeException
 {
-    private string $errorDetails;
-
-    public function __construct(string $message, int $httpCode, Throwable $previous = null, string $errorDetails = '')
+    public function __construct(string $message, int $httpCode, Throwable $previous = null, private readonly string $errorDetails = '')
     {
         parent::__construct($message, $httpCode, $previous);
-
-        $this->errorDetails = $errorDetails;
     }
 
     public function getErrorDetails(): string

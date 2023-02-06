@@ -28,6 +28,6 @@ class InvalidResourceTypeException extends OEmbedException
     {
         $message = 'The server returned an invalid resource type: %s';
         $message = sprintf($message, htmlspecialchars($resourceType));
-        parent::__construct($message, 1303403046);
+        parent::__construct($message, 1_303_403_046);
     }
 }

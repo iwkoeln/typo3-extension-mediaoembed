@@ -31,6 +31,6 @@ class NoProviderEndpointException extends OEmbedException
         $message = 'No endpoints were found for provider %s.'
             . ' Please make sure you specify at least a native endpoint or enable a generic provider.';
         $message = sprintf($message, $provider->getName());
-        parent::__construct($message, 1303937972);
+        parent::__construct($message, 1_303_937_972);
     }
 }

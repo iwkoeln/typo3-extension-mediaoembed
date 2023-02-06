@@ -23,14 +23,8 @@ use Sto\Mediaoembed\Service\ConfigurationService;
  */
 class Configuration
 {
-    private ConfigurationService $configurationService;
-
-    private ContentRepository $contentRepository;
-
-    public function __construct(ConfigurationService $configurationService, ContentRepository $contentRepository)
+    public function __construct(private readonly ConfigurationService $configurationService, private readonly ContentRepository $contentRepository)
     {
-        $this->configurationService = $configurationService;
-        $this->contentRepository = $contentRepository;
     }
 
     /**
@@ -38,8 +32,6 @@ class Configuration
      * Only applies to some resource types (as specified below).
      * For supported resource types, this parameter must be respected by providers.
      * This value is optional.
-     *
-     * @return int
      */
     public function getMaxheight(): int
     {
@@ -56,8 +48,6 @@ class Configuration
      * Only applies to some resource types (as specified below).
      * For supported resource types, this parameter must be respected by providers.
      * This value is optional.
-     *
-     * @return int
      */
     public function getMaxwidth(): int
     {
@@ -81,8 +71,6 @@ class Configuration
 
     /**
      * Returns the current tt_content record domain model.
-     *
-     * @return Content
      */
     private function getContent(): Content
     {

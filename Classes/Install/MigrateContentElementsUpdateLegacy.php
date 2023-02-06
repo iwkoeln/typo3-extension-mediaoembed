@@ -59,7 +59,7 @@ class MigrateContentElementsUpdateLegacy extends AbstractUpdate
      * @param mixed &$customMessages : custom messages
      * @return boolean Whether everything went smoothly or not
      */
-    public function performUpdate(array &$dbQueries, &$customMessages)
+    public function performUpdate(array &$dbQueries, mixed &$customMessages)
     {
         return $this->getFlexFormUpdateHandler()->performUpdate($dbQueries, $customMessages);
     }

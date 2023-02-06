@@ -9,9 +9,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class FlexFormUpdateHandler
 {
-    private int $oldRecordCount;
+    private readonly int $oldRecordCount;
 
-    private UpdateRepository $updateRepository;
+    private readonly UpdateRepository $updateRepository;
 
     public function __construct(UpdateRepository $updateRepository)
     {
@@ -53,7 +53,7 @@ class FlexFormUpdateHandler
      * @param mixed &$customMessages : custom messages
      * @return boolean Whether everything went smoothly or not
      */
-    public function performUpdate(array &$dbQueries, &$customMessages): bool
+    public function performUpdate(array &$dbQueries, mixed &$customMessages): bool
     {
         $result = $this->updateRepository->findAllRecordsThatNeedUpgrading();
 

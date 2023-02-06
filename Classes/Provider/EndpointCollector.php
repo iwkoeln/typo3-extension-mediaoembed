@@ -6,16 +6,8 @@ use RuntimeException;
 
 class EndpointCollector
 {
-    private ProviderEndpoints $providerEndpoints;
-
-    private ProviderUrls $providerUrls;
-
-    public function __construct(
-        ProviderEndpoints $providerEndpoints,
-        ProviderUrls $providerUrls
-    ) {
-        $this->providerEndpoints = $providerEndpoints;
-        $this->providerUrls = $providerUrls;
+    public function __construct(private readonly ProviderEndpoints $providerEndpoints, private readonly ProviderUrls $providerUrls)
+    {
     }
 
     /**
@@ -30,7 +22,7 @@ class EndpointCollector
         $endpointsByName = [];
 
         foreach ($this->getProviderData() as $urlScheme => $providerData) {
-            list($endpointUrl, $isRegex) = $providerData;
+            [$endpointUrl, $isRegex] = $providerData;
             $endpointLabel = $endpointLabels[$endpointUrl];
 
             $endpoint = $this->getOrCreateEndpoint($endpointsByName, $endpointLabel, $endpointUrl, $isRegex);
@@ -87,8 +79,6 @@ class EndpointCollector
 
     /**
      * This data is based on the data from the WordPress class WP_oEmbed.
-     *
-     * @return array
      */
     private function getProviderData(): array
     {

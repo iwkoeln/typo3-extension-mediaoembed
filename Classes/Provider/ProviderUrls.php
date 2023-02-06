@@ -6,7 +6,7 @@ namespace Sto\Mediaoembed\Provider;
 
 class ProviderUrls
 {
-    private $urls;
+    private readonly array $urls;
 
     public function __construct()
     {

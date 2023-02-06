@@ -2,6 +2,7 @@
 
 namespace Sto\Mediaoembed\Tests\Unit\Provider;
 
+use Prophecy\Prophecy\ObjectProphecy;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use Sto\Mediaoembed\Provider\Endpoint;
@@ -13,9 +14,9 @@ class EndpointCollectorTest extends TestCase
 {
     private ?EndpointCollector $collector = null;
 
-    private $providerEndpointsProphecy;
+    private ObjectProphecy $providerEndpointsProphecy;
 
-    private $providerUrlsProphecy;
+    private ObjectProphecy $providerUrlsProphecy;
 
     public function setUp()
     {

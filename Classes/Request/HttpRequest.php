@@ -31,17 +31,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class HttpRequest
 {
     /**
-     * The configuration
-     */
-    private Configuration $configuration;
-
-    /**
-     * The endpoint URL that should be contacted to get the embed
-     * information.
-     */
-    private string $endpoint;
-
-    /**
      * The required response format. When not specified, the provider can return
      * any valid response format.
      * When specified, the provider must return data in the request format,
@@ -60,10 +49,18 @@ class HttpRequest
         501,
     ];
 
-    public function __construct(Configuration $configuration, string $endpoint)
+    public function __construct(
+        /**
+         * The configuration
+         */
+        private readonly Configuration $configuration,
+        /**
+         * The endpoint URL that should be contacted to get the embed
+         * information.
+         */
+        private readonly string $endpoint
+    )
     {
-        $this->configuration = $configuration;
-        $this->endpoint = $endpoint;
     }
 
     public function injectHttpClientFactory(HttpClientFactory $httpClientFactory)
@@ -123,8 +120,6 @@ class HttpRequest
     /**
      * Builds an array of parameters that should be attached to the
      * endpoint url.
-     *
-     * @return array
      */
     protected function buildRequestParameterArray(): array
     {
@@ -148,7 +143,6 @@ class HttpRequest
      * it will be replaced with the expected response data format.
      *
      * @param array $parameters
-     * @return string
      */
     protected function buildRequestUrl(array $parameters): string
     {
@@ -174,17 +168,17 @@ class HttpRequest
         return $endpointBaseUrl . '?' . $queryString;
     }
 
-    protected function handleError401(string $requestUrl)
+    protected function handleError401(string $requestUrl): never
     {
         throw new HttpUnauthorizedException($this->configuration->getMediaUrl(), $requestUrl);
     }
 
-    protected function handleError404(string $requestUrl)
+    protected function handleError404(string $requestUrl): never
     {
         throw new HttpNotFoundException($this->configuration->getMediaUrl(), $requestUrl);
     }
 
-    protected function handleError501(string $requestUrl)
+    protected function handleError501(string $requestUrl): never
     {
         throw new HttpNotImplementedException(
             $this->configuration->getMediaUrl(),
@@ -196,13 +190,13 @@ class HttpRequest
     /**
      * @param $requestException
      */
-    protected function handleErrorUnknown($requestException)
+    protected function handleErrorUnknown($requestException): never
     {
         throw new RuntimeException(
             'An unknown error occurred while contacting the provider: '
             . $requestException->getMessage() . ' (' . $requestException->getErrorDetails() . ').'
             . ' Please make sure CURL use is enabled in the install tool to get valid error codes.',
-            1303401545
+            1_303_401_545
         );
     }
 
@@ -223,10 +217,9 @@ class HttpRequest
     }
 
     /**
-     * @param string $requestUrl
      * @return string|string[]
      */
-    protected function replaceFormatPlaceholders(string $requestUrl)
+    protected function replaceFormatPlaceholders(string $requestUrl): string|array
     {
         $requestUrl = str_replace('###FORMAT###', $this->format, $requestUrl);
         return str_replace('{format}', $this->format, $requestUrl);

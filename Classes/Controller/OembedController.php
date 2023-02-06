@@ -89,7 +89,6 @@ class OembedController extends ActionController
     /**
      * Checks if the current URL is valid
      *
-     * @param string $url
      * @throws InvalidUrlException
      */
     private function checkIfUrlIsValid(string $url)
@@ -110,15 +109,13 @@ class OembedController extends ActionController
     }
 
     /**
-     * @param ProviderResolver $providerResolver
-     * @param string $url
      * @return Provider|null
      */
     private function getNextMatchingProvider(ProviderResolver $providerResolver, string $url)
     {
         try {
             return $providerResolver->getNextMatchingProvider($url);
-        } catch (NoMatchingProviderException $e) {
+        } catch (NoMatchingProviderException) {
             return null;
         }
     }
@@ -135,7 +132,7 @@ class OembedController extends ActionController
     private function renderErrorMessage(string $translationKey, array $arguments): string
     {
         $message = $this->translate($translationKey, $arguments);
-        return '<div class="alert alert-warning">' . htmlspecialchars($message) . '</div>';
+        return '<div class="alert alert-warning">' . htmlspecialchars((string) $message) . '</div>';
     }
 
     /**

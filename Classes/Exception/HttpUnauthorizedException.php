@@ -36,6 +36,6 @@ class HttpUnauthorizedException extends RequestException
         $message .= 'This means that embedding is prohibited for this resource. Please use a direct link instead. ';
         $message .= 'The full request to the server was: %s';
         $message = sprintf($message, $mediaUrl, $requestUrl);
-        parent::__construct($message, 1303402203);
+        parent::__construct($message, 1_303_402_203);
     }
 }

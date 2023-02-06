@@ -34,8 +34,6 @@ class MigrateContentElementsUpdate implements UpgradeWizardInterface
     /**
      * Return the identifier for this wizard
      * This should be the same string as used in the ext_localconf class registration
-     *
-     * @return string
      */
     public function getIdentifier(): string
     {
@@ -44,8 +42,6 @@ class MigrateContentElementsUpdate implements UpgradeWizardInterface
 
     /**
      * Return the speaking name of this wizard
-     *
-     * @return string
      */
     public function getTitle(): string
     {
@@ -56,8 +52,6 @@ class MigrateContentElementsUpdate implements UpgradeWizardInterface
      * Execute the update
      *
      * Called when a wizard reports that an update is necessary
-     *
-     * @return bool
      */
     public function executeUpdate(): bool
     {
@@ -71,8 +65,6 @@ class MigrateContentElementsUpdate implements UpgradeWizardInterface
      *
      * Is used to determine whether a wizard needs to be run.
      * Check if data for migration exists.
-     *
-     * @return bool
      */
     public function updateNecessary(): bool
     {
