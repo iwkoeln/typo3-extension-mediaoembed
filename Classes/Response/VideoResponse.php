@@ -24,9 +24,9 @@ use Sto\Mediaoembed\Response\Contract\AspectRatioAwareResponseInterface;
  */
 class VideoResponse extends GenericResponse implements AspectRatioAwareResponseInterface
 {
-    final const ASPECT_RATIO_16TO9 = '16to9';
+    final public const ASPECT_RATIO_16TO9 = '16to9';
 
-    final const ASPECT_RATIO_4TO3 = '4to3';
+    final public const ASPECT_RATIO_4TO3 = '4to3';
 
     /**
      * The height in pixels required to display the HTML.

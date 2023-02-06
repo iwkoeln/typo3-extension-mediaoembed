@@ -32,9 +32,11 @@ class ContentRepository implements SingletonInterface
         // We must rebuild the content object because it might have changed when the plugin
         // is added multiple sites on one page.
         $contentObjectData = $this->configurationManager->getContentObject()->data;
-        if(!array_key_exists('uid', $contentObjectData)) {
-            $contentObjectData['uid'] = 0;
+
+        if(!$contentObjectData) {
+            return  new Content(0,'', 0, 0, false);
         }
+
         return new Content(
             (int) $contentObjectData['uid'] ?? 0,
             (string)$contentObjectData['tx_mediaoembed_url'] ?? '',

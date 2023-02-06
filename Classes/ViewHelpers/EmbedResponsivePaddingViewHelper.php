@@ -2,7 +2,6 @@
 
 namespace Sto\Mediaoembed\ViewHelpers;
 
-use Closure;
 use Sto\Mediaoembed\Response\Contract\AspectRatioAwareResponseInterface;
 
 class EmbedResponsivePaddingViewHelper extends AbstractViewHelper

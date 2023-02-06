@@ -2,8 +2,8 @@
 
 namespace Sto\Mediaoembed\Tests\Unit\Content;
 
-use Prophecy\Prophecy\ObjectProphecy;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Prophecy\ObjectProphecy;
 use Sto\Mediaoembed\Content\Configuration;
 use Sto\Mediaoembed\Domain\Model\Content;
 use Sto\Mediaoembed\Domain\Repository\ContentRepository;

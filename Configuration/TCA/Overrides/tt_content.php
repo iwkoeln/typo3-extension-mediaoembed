@@ -3,9 +3,6 @@
 declare(strict_types=1);
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Information\Typo3Version;
 
 defined('TYPO3') || die();
 
@@ -17,7 +14,9 @@ $ttContentColumns = [
         'label' => $lllPrefix . 'tt_content.tx_mediaoembed_url',
         'config' => [
             'type' => 'input',
-            'behaviour' => ['allowLanguageSynchronization' => true],
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
         ],
     ],
     'tx_mediaoembed_maxwidth' => [
@@ -33,7 +32,9 @@ $ttContentColumns = [
                 'lower' => '0',
             ],
             'default' => 0,
-            'behaviour' => ['allowLanguageSynchronization' => true],
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
         ],
     ],
     'tx_mediaoembed_maxheight' => [
@@ -49,7 +50,9 @@ $ttContentColumns = [
                 'lower' => '0',
             ],
             'default' => 0,
-            'behaviour' => ['allowLanguageSynchronization' => true],
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
         ],
     ],
     'tx_mediaoembed_play_related' => [

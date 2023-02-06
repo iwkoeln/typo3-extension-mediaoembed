@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sto\Mediaoembed\Install\Repository;
 
-use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Driver\Statement;
 use PDO;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;

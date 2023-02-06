@@ -2,8 +2,8 @@
 
 namespace Sto\Mediaoembed\Tests\Unit\Provider;
 
-use Prophecy\Prophecy\ObjectProphecy;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Prophecy\ObjectProphecy;
 use RuntimeException;
 use Sto\Mediaoembed\Provider\Endpoint;
 use Sto\Mediaoembed\Provider\EndpointCollector;
@@ -32,7 +32,9 @@ class EndpointCollectorTest extends TestCase
     public function testCollectEndpointCollectsEndpointUrls()
     {
         $this->providerEndpointsProphecy->getEndpoints()->willReturn(
-            ['https://some.existing.endpoint/' => 'name']
+            [
+                'https://some.existing.endpoint/' => 'name',
+            ]
         );
         $this->providerUrlsProphecy->getUrls()->willReturn(
             [
@@ -107,7 +109,9 @@ class EndpointCollectorTest extends TestCase
         $this->expectExceptionMessage('No label configured for endpoint URL https://some.existing.endpoint/');
 
         $this->providerEndpointsProphecy->getEndpoints()->willReturn(
-            ['#https?://testscheme1/.*#i' => 'name1']
+            [
+                '#https?://testscheme1/.*#i' => 'name1',
+            ]
         );
         $this->providerUrlsProphecy->getUrls()->willReturn(
             [

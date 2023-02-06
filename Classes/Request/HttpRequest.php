@@ -59,8 +59,7 @@ class HttpRequest
          * information.
          */
         private readonly string $endpoint
-    )
-    {
+    ) {
     }
 
     public function injectHttpClientFactory(HttpClientFactory $httpClientFactory)

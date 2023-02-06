@@ -74,7 +74,11 @@ class ProviderRepositoryTest extends TestCase
         $this->expectException(InvalidConfigurationException::class);
         $this->expectExceptionMessage('Endpoint of provider test is an invalid URL: an invalid URL');
 
-        $this->callFindAll(['test' => ['endpoint' => 'an invalid URL']]);
+        $this->callFindAll([
+            'test' => [
+                'endpoint' => 'an invalid URL',
+            ],
+        ]);
     }
 
     public function testEndpointMustNotBeEmpty()
@@ -82,7 +86,9 @@ class ProviderRepositoryTest extends TestCase
         $this->expectException(InvalidConfigurationException::class);
         $this->expectExceptionMessage('Endpoint of provider test is empty.');
 
-        $this->callFindAll(['test' => []]);
+        $this->callFindAll([
+            'test' => [],
+        ]);
     }
 
     public function testMustHaveUrlSchemesOrUrlRegexes()
@@ -90,7 +96,11 @@ class ProviderRepositoryTest extends TestCase
         $this->expectException(InvalidConfigurationException::class);
         $this->expectExceptionMessage('The provider test has no URL schemes.');
 
-        $this->callFindAll(['test' => ['endpoint' => 'https://my-provider.tld/enpoint']]);
+        $this->callFindAll([
+            'test' => [
+                'endpoint' => 'https://my-provider.tld/enpoint',
+            ],
+        ]);
     }
 
     public function testMustNotHaveUrlSchemesAndRegexesAtTheSameTime()
@@ -116,7 +126,9 @@ class ProviderRepositoryTest extends TestCase
         $this->expectException(InvalidConfigurationException::class);
         $this->expectExceptionMessage('Provider name must not be empty.');
 
-        $this->callFindAll(['' => []]);
+        $this->callFindAll([
+            '' => [],
+        ]);
     }
 
     private function callFindAll(array $settings): Provider
@@ -124,7 +136,9 @@ class ProviderRepositoryTest extends TestCase
         $configurationManagerProphecy = $this->prophesize(ConfigurationManagerInterface::class);
         $configurationManagerProphecy->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
             ->shouldBeCalledOnce()
-            ->willReturn(['providers' => $settings]);
+            ->willReturn([
+                'providers' => $settings,
+            ]);
 
         $providerRepository = new ProviderRepository($configurationManagerProphecy->reveal());
         $providers = $providerRepository->findAll();

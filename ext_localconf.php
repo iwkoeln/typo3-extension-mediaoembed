@@ -1,11 +1,12 @@
 <?php
 
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
-use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use Sto\Mediaoembed\Controller\OembedController;
 use Sto\Mediaoembed\Install\MigrateContentElementsUpdate;
 use Sto\Mediaoembed\Install\MigrateContentElementsUpdateLegacy;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
 /** @noinspection PhpFullyQualifiedNameUsageInspection */
 
 /** @noinspection PhpMissingStrictTypesDeclarationInspection */
@@ -21,7 +22,9 @@ $bootMediaoembed = function () {
             'Mediaoembed',
             'OembedMediaRenderer',
             /** @uses \Sto\Mediaoembed\Controller\OembedController::renderMediaAction() */
-            [OembedController::class => 'renderMedia'],
+            [
+                OembedController::class => 'renderMedia',
+            ],
             [],
             ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
@@ -32,7 +35,9 @@ $bootMediaoembed = function () {
             'Mediaoembed',
             'OembedMediaRenderer',
             /** @uses \Sto\Mediaoembed\Controller\OembedController::renderMediaAction() */
-            [OembedController::class => 'renderMedia'],
+            [
+                OembedController::class => 'renderMedia',
+            ],
             [],
             ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
