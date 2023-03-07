@@ -164,6 +164,13 @@ plugin.tx_mediaoembed.settings.providers {
         }
     }
 
+    podigee {
+        endpoint = https://embed.podigee.com/oembed
+        urlRegexes {
+            10 = #https?://([a-z0-9-]+\.)?podigee\.io/.*#i
+        }
+    }
+
     polldaddy {
         endpoint = https://polldaddy.com/oembed/
         urlRegexes {
@@ -248,6 +255,13 @@ plugin.tx_mediaoembed.settings.providers {
         endpoint = https://www.ted.com/services/v1/oembed.{format}
         urlRegexes {
             10 = #https?://(www\.|embed\.)?ted\.com/talks/.*#i
+        }
+    }
+
+    tiktok {
+        endpoint = https://www.tiktok.com/oembed
+        urlRegexes {
+            10 = #https?://(www\.)?tiktok\.com/.*#i
         }
     }
 
